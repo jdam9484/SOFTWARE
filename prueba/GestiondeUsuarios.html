@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Usuarios</title>
+    <link rel="stylesheet" href="GestiondeUsuarios.css">
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="firebase/config.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="usuarios-panel">
+        <button id="btn-volver-admin" class="volver-admin-btn"><i class='bx bx-arrow-back'></i> Volver al Panel Principal</button>
+        <h2>Gestión de Usuarios</h2>
+        <table class="usuarios-table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Rol</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="usuarios-lista">
+                <tr><td colspan="4" style="text-align:center; color:#aaa;">Cargando usuarios...</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="GestiondeUsuarios.js"></script>
+    <script>
+    // Navegación de regreso al panel admin
+    document.getElementById('btn-volver-admin').onclick = function() {
+        window.location.href = 'Administrador.html';
+    };
+    </script>
+</body>
+</html>

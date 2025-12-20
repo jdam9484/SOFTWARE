@@ -1,0 +1,198 @@
+/* --- Botón volver al panel admin --- */
+.volver-admin-btn {
+	background: #900C3F;
+	color: #fff;
+	border: none;
+	border-radius: 6px;
+	padding: 10px 22px;
+	font-size: 1em;
+	font-weight: 500;
+	margin-bottom: 18px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	transition: background 0.2s;
+}
+.volver-admin-btn:hover {
+	background: #b48a6e;
+	color: #fff;
+}
+body {
+	font-family: 'Poppins', sans-serif;
+	background: #f5f6fa;
+	margin: 0;
+	padding: 0;
+}
+
+.productos-panel {
+	max-width: 900px;
+	margin: 40px auto;
+	background: #fff;
+	border-radius: 16px;
+	box-shadow: 0 4px 18px #0001;
+	padding: 36px 32px 32px 32px;
+}
+.productos-panel h2 {
+	text-align: center;
+	color: #900C3F;
+	margin-bottom: 28px;
+}
+.productos-actions {
+	text-align: right;
+	margin-bottom: 18px;
+}
+#btn-nuevo-producto {
+	background: linear-gradient(90deg, #900C3F 60%, #EF8700 100%);
+	color: #fff;
+	border: none;
+	padding: 12px 28px;
+	border-radius: 8px;
+	font-size: 1em;
+	font-weight: 600;
+	cursor: pointer;
+	box-shadow: 0 2px 8px #d7b09033;
+	transition: background 0.18s, transform 0.18s;
+}
+#btn-nuevo-producto:hover {
+	background: linear-gradient(90deg, #EF8700 60%, #900C3F 100%);
+	transform: translateY(-2px) scale(1.04);
+}
+
+.productos-table {
+	width: 100%;
+	border-collapse: collapse;
+	background: #fff;
+	margin-bottom: 24px;
+}
+.productos-table th, .productos-table td {
+	padding: 12px 10px;
+	font-size: 1em;
+	text-align: left;
+}
+.productos-table th {
+	background: #fbeee6;
+	color: #900C3F;
+	font-weight: 700;
+	border-bottom: 2px solid #f3d1b7;
+}
+.productos-table td {
+	color: #333;
+	border-bottom: 1px solid #f3d1b7;
+}
+.productos-table tr:last-child td {
+	border-bottom: none;
+}
+.productos-table tr:hover td {
+	background: #f8f6f2;
+}
+.btn-editar, .btn-eliminar {
+	padding: 6px 16px;
+	border-radius: 6px;
+	border: none;
+	font-weight: 600;
+	cursor: pointer;
+	margin-right: 6px;
+	font-size: 0.98em;
+	transition: background 0.18s;
+}
+.btn-editar {
+	background: #fbeee6;
+	color: #900C3F;
+}
+.btn-editar:hover {
+	background: #EF8700;
+	color: #fff;
+}
+.btn-eliminar {
+	background: #ffe0e0;
+	color: #d32f2f;
+}
+.btn-eliminar:hover {
+	background: #d32f2f;
+	color: #fff;
+}
+
+/* Modal */
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 2000;
+	left: 0; top: 0; width: 100vw; height: 100vh;
+	background: rgba(0,0,0,0.3);
+	justify-content: center;
+	align-items: center;
+}
+.modal-content {
+	background: #fff;
+	border-radius: 14px;
+	padding: 32px 28px 24px 28px;
+	box-shadow: 0 4px 18px #0002;
+	min-width: 320px;
+	max-width: 95vw;
+	position: relative;
+}
+.modal-content h3 {
+	color: #900C3F;
+	margin-bottom: 18px;
+	text-align: center;
+}
+.modal-content label {
+	display: block;
+	margin-bottom: 4px;
+	color: #333;
+	font-weight: 500;
+}
+.modal-content input, .modal-content select {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 16px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	font-size: 1em;
+}
+.modal-actions {
+	display: flex;
+	gap: 12px;
+	justify-content: flex-end;
+}
+.modal-actions button {
+	padding: 10px 22px;
+	border-radius: 6px;
+	border: none;
+	font-weight: 600;
+	cursor: pointer;
+	font-size: 1em;
+}
+#guardar-producto {
+	background: #900C3F;
+	color: #fff;
+}
+#guardar-producto:hover {
+	background: #EF8700;
+}
+#cancelar-producto {
+	background: #eee;
+	color: #900C3F;
+}
+#cancelar-producto:hover {
+	background: #fbeee6;
+}
+.cerrar {
+	position: absolute;
+	top: 10px;
+	right: 18px;
+	font-size: 1.6em;
+	color: #900C3F;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+@media (max-width: 600px) {
+	.productos-panel {
+		padding: 12px 2vw;
+	}
+	.modal-content {
+		padding: 18px 6vw 12px 6vw;
+	}
+}

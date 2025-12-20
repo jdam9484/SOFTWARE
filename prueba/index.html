@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina Web de una Pasteleria</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Firebase App (core) -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <!-- Firebase Auth -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <!-- Firebase Firestore -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <!-- Configuración e inicialización de Firebase -->
+    <script src="firebase/config.js"></script>
+</head>
+<body>      
+    <!-- Alfonso -->
+    <header class="header" id="inicio">                                     
+        <img class="bg" src="assets/bg.png" alt="">
+        <div class="menu container">
+
+            <a href="#" class="logo">
+                <img src="assets/LogoPasteleria.PNG" alt="Logo Pastelería" class="logo-img">
+            </a>
+
+            <input type="checkbox" id="menu">
+            <label for="menu">
+                <img src="assets/menu.png" class="menu-icono" alt="">
+            </label>
+
+            <nav class="navbar">
+                <ul class="nav-list">
+                    <li class="nav-item active"><a href="#inicio" class="nav-link"><span class="nav-ico">🏠</span><span class="nav-txt">Inicio</span></a></li>
+                    <li class="nav-item"><a href="#servicios" class="nav-link"><span class="nav-ico">🧁</span><span class="nav-txt">Servicios</span></a></li>
+                    <li class="nav-item"><a href="#productos" class="nav-link"><span class="nav-ico">🛍️</span><span class="nav-txt">Producto</span></a></li>
+                    <li class="nav-item"><a href="#contacto" class="nav-link"><span class="nav-ico">📞</span><span class="nav-txt">Contacto</span></a></li>
+                </ul>
+            </nav>
+
+            <!-- Información del usuario -->
+            <div id="user-info" style="display:none; align-items:center; gap:10px; color:#fff; font-weight:bold;">
+                <span id="welcome-msg"></span>
+                <button id="logout-btn" style="padding:5px 10px; border:none; border-radius:5px; background:#d7005f; color:#fff; cursor:pointer;">Cerrar Sesión</button>
+            </div>
+
+            <!-- Botón para abrir login -->
+            <button id="mostrarLogin">Iniciar sesión</button>
+
+            <!-- Carrito -->
+            <ul>
+                <li class="submenu">
+                    <div class="cart-wrapper">
+                        <img src="assets/car.svg" id="img-carrito" alt="carrito">
+                        <span id="cart-count" class="cart-count">0</span>
+                    </div>
+                    <div id="carrito" class="cart-card">
+                        <div class="cart-header">
+                            <h3>Mi Carrito</h3>
+                        </div>
+                        <div class="cart-body">
+                            <table id="lista-carrito">
+                                <thead>
+                                    <tr>
+                                        <th>Imagen</th>
+                                        <th>Nombre</th>
+                                        <th>Descripción</th>
+                                        <th>Precio</th>
+                                        <th>Cantidad</th>
+                                        <th>Importe</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                        <div class="cart-footer">
+                            <div class="cart-total">Total: <span id="cart-total">$0.00</span></div>
+                            <a href="#" id="vaciar-carrito" class="btn-3 vaciar-large">Vaciar Carrito</a>
+                            <a href="#" id="btn-pagar" class="btn-3 vaciar-large" style="background:#900C3F; margin-left:10px;">Pagar</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+        </div> <!-- FIN .menu -->
+
+        <div class="header-content container">
+            <div class="header-txt">
+
+                <h1><span>Bienvenido </span>disfruta de nuestros platillos</h1>
+
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate corporis a laborum quos,
+                    sint, ut natus error aut cumque magnam ipsam iure nesciunt iste facilis, rerum iusto inventore
+                    reprehenderit quas.
+                </p>
+
+                <div class="actions">
+                    <a href="#" class="btn-1">Informacion</a>
+
+                    <!-- Buscador -->
+                    <form class="search-container" onsubmit="return false;">
+                        <input type="text" id="search" placeholder="Buscar torta...">
+                        <div id="suggestions" class="suggestions"></div>
+                    </form>
+                </div>
+
+            </div>
+ 
+            <div class="header-img">
+                <img src="assets/sel_sf.png" alt="">
+            </div>
+
+        </div>
+
+    </header>
+
+<!-- sebastian -->
+        <!-- FORMULARIO LOGIN (MOVIDO FUERA DEL HEADER) -->
+        <div class="contenedor" id="login">
+                <div class="modal-content">
+                        <span class="cerrar" onclick="cerrarForm()">×</span>
+                        <h2 class="sesion">Iniciar Sesión</h2>
+                        <form>
+                                <label for="loginUsuario"></label>
+                                <input type="text" id="loginUsuario" placeholder="Ingrese su usuario o correo">
+
+                                <label for="loginPass"></label>
+                                <div class="passBox">
+                                        <input type="password" id="loginPass" placeholder="Ingrese su contraseña">
+                                        <span class="ojo" onclick="verPass('loginPass')">&#128065;</span>
+                                </div>
+
+                                <p id="errorLogin" class="error"></p>
+                                <button type="submit">Iniciar Sesión</button>
+                        </form>
+                        <p>¿No tienes cuenta? <a href="Registro.html">Regístrate</a></p>
+                </div>
+        </div>
+
+    <!-- FORMULARIO REGISTRO (MOVIDO FUERA DEL HEADER) -->
+    <div class="contenedor" id="registro">
+        <div class="modal-content">
+            <span class="cerrar" onclick="cerrarForm()">×</span>
+            <h2>Registro</h2>
+            <form onsubmit="return validarRegistro()">
+
+                <label for="regEmail"></label>
+                <input type="email" id="regEmail" placeholder="Ingrese su correo">
+                <p id="msgEmail" class="miniError"></p>
+
+                <label for="regUser"></label>
+                <input type="text" id="regUser" placeholder="Ingrese su usuario">
+
+                <label for="regPass"></label>
+                <div class="passBox">
+                    <input type="password" id="regPass" placeholder="Ingrese su contraseña">
+                    <span class="ojo" onclick="verPass('regPass')">&#128065;</span>
+                </div>
+
+                <label for="regPass2"></label>
+                <div class="passBox">
+                    <input type="password" id="regPass2" placeholder="Repita su contraseña">
+                    <span class="ojo" onclick="verPass('regPass2')">&#128065;</span>
+                </div>
+
+                <p id="errorRegistro" class="error"></p>
+                <button type="submit">Registrarse</button>
+            </form>
+            <p>¿Ya tienes cuenta? <a href="#" onclick="mostrarLogin()">Inicia sesión</a></p>
+        </div>
+    </div>
+
+
+<!-- alonso -->
+    <!-- DESAYUNOS -->
+    <section class="breakfast container" id="servicios">
+        <h2>Ven y disfruta los mejores sabores de Puerto Maldonado!</h2>
+        <p>Horario 8 am - 8 pm</p>
+
+        <div class="breakfast-content">
+            <div class="breakfast-card">
+                <img src="assets/Torta_Selva_Negra.jpg" alt="">
+                <h3>Tortas</h3>
+            </div>
+
+            <div class="breakfast-card">
+                <img src="assets/Postre_MussMara.jpg" alt="">
+                <h3>Postres</h3>
+            </div>
+
+            <div class="breakfast-card">
+                <img src="assets/Bebidas_CocaInkaAgua.jpg" alt="">
+                <h3>Bebidas</h3>
+            </div>
+
+            <div class="breakfast-card">
+                <img src="assets/Salado_PapaRellena.jpg" alt="">
+                <h3>Salados</h3>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- INFO -->
+    <section class="info">
+        <img class="bg-2" src="assets/bg-2.png" alt="">
+
+        <div class="info-content container">
+            <div class="info-img slider-container">
+                <img src="assets/Postre_CremaVol.jpg" class="slide active" alt="Pastel destacado">
+                <img src="assets/Personalizado_Manza.JPG" class="slide" alt="Personalizado">
+                <img src="assets/Bebidas_MosterCerveza.jpg" class="slide" alt="Bebida refrescante">
+                <img src="assets/Torta_Helada.jpg" class="slide" alt="Torta Helada">
+                <img src="assets/Torta_Selva_Negra.jpg" class="slide" alt="Torta Selva Negra">
+            </div>
+            
+            <div class="info-txt">
+                <h2>La mejor calidad en todos los productos.</h2>
+                <p>
+                    Puede realizar su pedido con anticipación y recogerlo en la tienda o solicitar la entrega a domicilio.
+                    Ofrecemos opciones personalizadas para eventos especiales como cumpleaños, bodas y reuniones corporativas.
+                </p>
+                <a href="#" class="btn-animado">Realizar pedido</a>
+            </div>
+        </div>
+    </section>
+
+<!-- alexander -->
+    <!-- PRODUCTOS -->
+    <main class="products container" id="productos">
+        <h2>Productos</h2>
+        <div class="box-container" id="lista-1">
+        <div class="box" id="producto-1">
+            <img src="assets/Postre_MussMara.jpg" alt="">
+            <div>
+                <h3>Cheesecake de Maracuya</h3>
+                <p>Alta Calidad</p>
+                <p class="precio">s/ 70.00</p>
+                <p class="porciones">Porciones: 1</p>
+                <p class="descripcion">Suave y cremoso cheesecake bañado 
+                                        con una vibrante reducción de maracuyá natural. 
+                                        El equilibrio perfecto entre lo dulce y lo cítrico.</p>
+                <div class="cantidad-control">
+                    <button type="button" class="restar-cantidad" data-id="X">-</button>
+                    <input type="number" min="1" max="10" value="1" class="cantidad" data-id="X" readonly>
+                    <button type="button" class="sumar-cantidad" data-id="X">+</button>
+                </div>
+                <a href="#" class="agregar-carrito btn-3" data-id="1">Agregar al carrito</a>
+            </div>
+        </div>
+
+        <div class="box" id="producto-2">
+            <img src="assets/Torta_Selva_Negra.jpg" alt="">
+            <div>
+                <h3>Torta Selva Negra</h3>
+                <p>Alta Calidad</p>
+                <p class="precio">S/ 70.00</p>
+                <p class="porciones">Porciones: 1</p>
+                <p class="descripcion">Deliciosa torta de chocolate, ideal para cumpleaños
+                                        y celebraciones especiales.
+                </p>
+                <div class="cantidad-control">
+                    <button type="button" class="restar-cantidad" data-id="X">-</button>
+                    <input type="number" min="1" max="10" value="1" class="cantidad" data-id="X" readonly>
+                    <button type="button" class="sumar-cantidad" data-id="X">+</button>
+                </div>
+                <a href="#" class="agregar-carrito btn-3" data-id="2">Agregar al carrito</a>
+            </div>
+        </div>
+
+        <div class="box" id="producto-3">
+            <img src="assets/Torta_3Leches.JPG" alt="">
+            <div>
+                <h3>Torta 3 Leches</h3>
+                <p>Alta Calidad</p>
+                <p class="precio">S/ 70.00</p>
+                <p class="porciones">Porciones: 2</p>
+                <p class="descripcion">Exquisita torta bañada en tres leches
+                                        con un sabor sin igual para degustar con amigos y familia.</p>
+                <div class="cantidad-control">
+                    <button type="button" class="restar-cantidad" data-id="X">-</button>
+                    <input type="number" min="1" max="10" value="1" class="cantidad" data-id="X" readonly>
+                    <button type="button" class="sumar-cantidad" data-id="X">+</button>
+                </div>
+                <a href="#" class="agregar-carrito btn-3" data-id="3">Agregar al carrito</a>
+            </div>
+        </div>
+
+        <div class="box" id="producto-4">
+            <img src="assets/Salado_EmpanadaQueso.jpg" alt="">
+            <div>
+                <h3>Empanada de Queso</h3>
+                <p>Alta Calidad</p>
+                <p class="precio">S/ 5.00</p>
+                <p class="porciones">Porciones: 1</p>
+                <p class="descripcion">Torta suave y húmeda con mezcla de tres tipos de leche.</p>
+                <div class="cantidad-control">
+                    <button type="button" class="restar-cantidad" data-id="X">-</button>
+                    <input type="number" min="1" max="10" value="1" class="cantidad" data-id="X" readonly>
+                    <button type="button" class="sumar-cantidad" data-id="X">+</button>
+                </div>
+                <a href="#" class="agregar-carrito btn-3" data-id="4">Agregar al carrito</a>
+            </div>
+        </div>
+ 
+                <div class="box" id="producto-5">
+            <img src="assets/Salado_PapaRellena.jpg" alt="">
+            <div>
+                <h3>Papa Rellena</h3>
+                <p>Alta Calidad</p>
+                <p class="precio">s/ 5.00</p>
+                <p class="porciones">Porciones: 1</p>
+                <p class="descripcion">Un clásico irresistible. Bola de puré de papa suave 
+                                        y dorada, con un sabroso relleno de carne de res, 
+                                        huevo duro y aceitunas.</p>
+                <div class="cantidad-control">
+                    <button type="button" class="restar-cantidad" data-id="X">-</button>
+                    <input type="number" min="1" max="10" value="1" class="cantidad" data-id="X" readonly>
+                    <button type="button" class="sumar-cantidad" data-id="X">+</button>
+                </div>
+                <a href="#" class="agregar-carrito btn-3" data-id="5">Agregar al carrito</a>
+            </div>
+        </div>
+
+        <div class="box" id="producto-6">
+            <img src="assets/Postre_Gelatina.jpg" alt="">
+            <div>
+                <h3>Gelatina</h3>
+                <p>Alta Calidad</p>
+                <p class="precio">s/ 3.00</p>
+                <p class="porciones">Porciones: 1</p>
+                <p class="descripcion">Postre clásico, ligero y refrescante. 
+                                        Una opción ideal de textura suave y temblorosa, 
+                                        disponible en nuestros sabores frutales favoritos.</p>
+                <div class="cantidad-control">
+                    <button type="button" class="restar-cantidad" data-id="X">-</button>
+                    <input type="number" min="1" max="10" value="1" class="cantidad" data-id="X" readonly>
+                    <button type="button" class="sumar-cantidad" data-id="X">+</button>
+                </div>
+                <a href="#" class="agregar-carrito btn-3" data-id="6">Agregar al carrito</a>
+            </div>
+        </div>
+
+        <div class="box" id="producto-7">
+            <img src="assets/Torta_Helada.jpg" alt="">
+            <div>
+                <h3>Torta Helada</h3>
+                <p>Alta Calidad</p>
+                <p class="precio">s/ 70.00</p>
+                <p class="porciones">Porciones: 1</p>
+                <p class="descripcion">Disfruta de este postre nostálgico 
+                                        que combina texturas y sabor. Suave, cremosa y 
+                                        helada: la mejor manera de terminar cualquier 
+                                        comida.</p>
+                <div class="cantidad-control">
+                    <button type="button" class="restar-cantidad" data-id="X">-</button>
+                    <input type="number" min="1" max="10" value="1" class="cantidad" data-id="X" readonly>
+                    <button type="button" class="sumar-cantidad" data-id="X">+</button>
+                </div>
+                <a href="#" class="agregar-carrito btn-3" data-id="7">Agregar al carrito</a>
+            </div>
+        </div>
+
+        <div class="box" id="producto-8">
+            <img src="assets/Bebidas_CocaInkaAgua.jpg" alt="">
+            <div>
+                <h3>Bebidas Gaseosas</h3>
+                <p>Alta Calidad</p>
+                <p class="precio">s/ 5.00</p>
+                <p class="porciones">Porciones: 1</p>
+                <p class="descripcion">Bebidas refrescantes ideales para esta calor tropical.</p>
+                <div class="cantidad-control">
+                    <button type="button" class="restar-cantidad" data-id="X">-</button>
+                    <input type="number" min="1" max="10" value="1" class="cantidad" data-id="X" readonly>
+                    <button type="button" class="sumar-cantidad" data-id="X">+</button>
+                </div>
+                <a href="#" class="agregar-carrito btn-3" data-id="8">Agregar al carrito</a>
+            </div>
+        </div>
+         
+        </div>
+
+        <div class="btn-2" id="load-more">Cargar Más</div>
+    </main>
+
+
+ <!-- todos -->
+    <!-- DETALLE PRODUCTO -->
+    <section id="detalle-producto" class="detalle-producto container"></section>
+
+    <!-- APP -->
+    <section class="app container">
+        <div class="app-txt">
+            <h2>Próximamente descubre nuestra nueva App!</h2>
+            <p>
+                Se vienen tiempos brillantes descargando la futura App.
+                Tu pedido con un solo toque y ofertas únicas.
+                Secretitos online y mucho más.
+            </p>
+            <div class="descarga">
+                <img src="assets/store1.png" alt="">
+                <img src="assets/store2.png" alt="">
+            </div>
+        </div>
+
+        <div class="app-img">
+            <img src="assets/app.png" alt="">
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer" id="contacto">
+        <div class="footer-content container">
+
+            <div class="link">
+                <h3>Sobre Nosotros</h3>
+                <ul>
+                    <li><a href="#">Trabaja con Nosotros</a></li>
+                    <li><a href="#">Nuestros Valores</a></li>
+                    <li><a href="#">Prensa y Noticias</a></li>
+                    <li><a href="#">Responsabilidad Social</a></li>
+                </ul>
+            </div>
+
+            <div class="link">
+                <h3>Preguntas Frecuentes (FAQ)</h3>
+                <ul>
+                    <li><a href="#">Contáctanos</a></li>
+                    <li><a href="#">Términos y Condiciones</a></li>
+                    <li><a href="#">Política de Privacidad</a></li>
+                    <li><a href="#">Libro de Reclamaciones</a></li>
+                </ul>
+            </div>
+
+            <div class="link">
+                <h3>Menú Completo</h3>
+                <ul>
+                    <li><a href="#">Servicio de Catering</a></li>
+                    <li><a href="#">Localiza Nuestras Sucursales</a></li>
+                    <li><a href="#">Programa de Lealtad</a></li>
+                    <li><a href="#">Platos de Temporada</a></li>
+                </ul>
+            </div>
+
+            <div class="link">
+                <h3>Proximante en estas plataformas!</h3>
+                <div class="descarga">
+                    <img src="assets/store1.png" alt="">
+                    <img src="assets/store2.png" alt="">
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- PANEL ADMIN -->
+ <section id = "admin-panel" class = "admin-panel">
+        <h2>Panel de Administrador</h2>
+        <div class = "admin-card">
+            <h3>Usuarios Registrados</h3>
+
+            <table id = "user-list">
+                <thead>
+                    <th>Nombre</th>
+                    <th>Usuarios</th>
+                    <th>Rol</th>
+                    <th>Acción</th>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+            
+        </div>
+        
+    </section>
+    <script src="./script.js"></script>
+    <script src="./services/clienteAuthState.js"></script>
+<script>
+// Botón para ir al proceso de pago
+document.addEventListener('DOMContentLoaded', function() {
+    var btnPagar = document.getElementById('btn-pagar');
+    if (btnPagar) {
+        btnPagar.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = 'ProcesodePago.html';
+        });
+    }
+});
+</script>
+
+</body>
+</html>

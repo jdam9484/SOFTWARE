@@ -1,0 +1,81 @@
+/* --- Tabla de usuarios --- */
+.usuarios-table {
+	width: 100%;
+	border-collapse: collapse;
+	background: #fff;
+	border-radius: 12px;
+	box-shadow: 0 2px 16px #0001;
+	margin-top: 18px;
+	overflow: hidden;
+}
+.usuarios-table th, .usuarios-table td {
+	padding: 14px 12px;
+	text-align: left;
+}
+.usuarios-table th {
+	background: #900C3F11;
+	color: #900C3F;
+	font-weight: 700;
+	font-size: 1.08em;
+}
+.usuarios-table tr:nth-child(even) {
+	background: #f5f6fa;
+}
+.usuarios-table tr:hover {
+	background: #f3e6ef;
+}
+
+/* --- Badge de rol --- */
+.badge-rol {
+	display: inline-block;
+	padding: 4px 12px;
+	border-radius: 12px;
+	font-size: 0.98em;
+	font-weight: 600;
+	color: #fff;
+}
+.badge-rol.admin {
+	background: #900C3F;
+}
+.badge-rol.cliente {
+	background: #b48a6e;
+}
+
+/* --- Select de rol --- */
+.select-rol {
+	padding: 6px 12px;
+	border-radius: 6px;
+	border: 1px solid #ccc;
+	font-size: 1em;
+	background: #fff;
+	color: #900C3F;
+	outline: none;
+	transition: border 0.2s;
+}
+.select-rol:focus {
+	border: 1.5px solid #900C3F;
+}
+/* --- Botón volver al panel admin --- */
+.volver-admin-btn {
+	background: #900C3F;
+	color: #fff;
+	border: none;
+	border-radius: 6px;
+	padding: 10px 22px;
+	font-size: 1em;
+	font-weight: 500;
+	margin-bottom: 18px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	transition: background 0.2s;
+}
+.volver-admin-btn:hover {
+	background: #b48a6e;
+	color: #fff;
+}
+body, html {
+	 font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+	 background: #faf7f7;
+}

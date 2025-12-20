@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administrador</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="firebase/config.js"></script>
+</head>
+<body>
+    <div id="admin-panel" style="display:none; position:fixed; inset:0; width:100vw; height:100dvh; background:#f5f6fa; z-index:10000;">
+        <div class="sidebar">
+            <div class="logo-details">
+                <i class='bx bxs-cake'></i>
+                <span class="logo_name">AdminPanel</span>
+            </div>
+            <button id="btn-reportes-basicos" class="sidebar-btn" type="button">
+                <i class='bx bx-bar-chart'></i> Reportes Básicos
+            </button>
+            <button id="btn-gestion-usuarios" class="sidebar-btn" type="button">
+                <i class='bx bx-user'></i> Gestión de Usuarios
+            </button>
+            <button id="btn-gestion-productos" class="sidebar-btn" type="button">
+                <i class='bx bx-package'></i> Gestión de Productos
+            </button>
+            <button id="logout-admin" class="logout-btn">
+                <i class='bx bx-log-out'></i> Cerrar Sesión
+            </button>
+        </div>
+        <section class="home-section">
+            <nav>
+                <div class="sidebar-button">
+                    <i class='bx bx-menu sidebarBtn'></i>
+                    <span class="dashboard">Dashboard</span>
+                </div>
+                <div class="profile-details">
+                    <img src="assets/LogoPasteleria.PNG" alt="">
+                    <span class="admin_name">Administrador</span>
+                </div>
+            </nav>
+            <div class="home-content">
+                <div class="overview-boxes">
+                    <div class="box">
+                        <div class="box-topic">Total Usuarios</div>
+                        <div class="number" id="total-usuarios">0</div>
+                        <div class="indicator-row">
+                            <i class='bx bx-user'></i>
+                            <span class="text">Registrados</span>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="box-topic">Total Ventas</div>
+                        <div class="number" id="total-ventas">0</div>
+                        <div class="indicator-row">
+                            <i class='bx bx-cart'></i>
+                            <span class="text">Productos vendidos</span>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="box-topic">Ingresos</div>
+                        <div class="number" id="total-ingresos">S/ 0.00</div>
+                        <div class="indicator-row">
+                            <i class='bx bx-money'></i>
+                            <span class="text">Ganancia estimada</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="sales-boxes">
+                    <div class="recent-sales box">
+                        <div class="title">Usuarios Recientes</div>
+                        <div class="sales-details">
+                            <table class="tabla-visual" id="tabla-usuarios">
+                                <thead>
+                                    <tr>
+                                        <th>Usuario</th>
+                                        <th>Email</th>
+                                        <th>Rol</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="top-sales box">
+                        <div class="title">Registro de Ventas</div>
+                        <table class="tabla-visual" id="tabla-ventas">
+                            <thead>
+                                <tr>
+                                    <th>Usuario</th>
+                                    <th>Producto</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div id="denied" style="display:none; text-align:center; margin-top:100px;">
+        <h2>Acceso denegado</h2>
+        <p>No tienes permisos para ver este panel.</p>
+        <a href="index.html">Volver al inicio</a>
+    </div>
+    <!-- Boxicons CDN -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="Administrador.js"></script>
+</body>
+</body>
+<script>
+// Navegación a módulos desde la barra lateral (asegurar que el DOM esté cargado)
+document.addEventListener('DOMContentLoaded', function() {
+    var btnGestion = document.getElementById('btn-gestion-productos');
+    if (btnGestion) {
+        btnGestion.addEventListener('click', function() {
+            window.location.href = 'GestiondeProductos.html';
+        });
+    }
+    var btnUsuarios = document.getElementById('btn-gestion-usuarios');
+    if (btnUsuarios) {
+        btnUsuarios.addEventListener('click', function() {
+            window.location.href = 'GestiondeUsuarios.html';
+        });
+    }
+    var btnReportes = document.getElementById('btn-reportes-basicos');
+    if (btnReportes) {
+        btnReportes.addEventListener('click', function() {
+            window.location.href = 'ReportesBasicos.html';
+        });
+    }
+});
+</script>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Gestión de Productos</title>
+	<link rel="stylesheet" href="GestiondeProductos.css">
+	<!-- Firebase -->
+	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+	<script src="firebase/config.js"></script>
+</head>
+<body>
+	<div class="productos-panel">
+		<button id="btn-volver-admin" class="volver-admin-btn"><i class='bx bx-arrow-back'></i> Volver al Panel Principal</button>
+		<h2>Gestión de Productos</h2>
+		<div class="productos-actions">
+			<button id="btn-nuevo-producto">Agregar Producto</button>
+		</div>
+		<table class="productos-table">
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Categoría</th>
+					<th>Precio</th>
+					<th>Stock</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody id="productos-lista">
+				<tr><td colspan="5" style="text-align:center; color:#aaa;">Cargando productos...</td></tr>
+			</tbody>
+		</table>
+
+		<!-- Modal para agregar/editar producto -->
+		<div class="modal" id="modal-producto">
+			<div class="modal-content">
+				<span class="cerrar" id="cerrar-modal">&times;</span>
+				<h3 id="modal-titulo">Agregar Producto</h3>
+				<form id="form-producto">
+					<input type="hidden" id="producto-id">
+					<label>Nombre:</label>
+					<input type="text" id="producto-nombre" required>
+					<label>Categoría:</label>
+					<select id="producto-categoria" required>
+						<option value="Torta">Torta</option>
+						<option value="Postre">Postre</option>
+						<option value="Bebida">Bebida</option>
+						<option value="Salado">Salado</option>
+					</select>
+					<label>Precio (S/):</label>
+					<input type="number" id="producto-precio" min="0" step="0.01" required>
+					<label>Stock:</label>
+					<input type="number" id="producto-stock" min="0" required>
+					<div class="modal-actions">
+						<button type="submit" id="guardar-producto">Guardar</button>
+						<button type="button" id="cancelar-producto">Cancelar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script src="GestiondeProductos.js"></script>
+<script>
+// Navegación de regreso al panel admin
+document.getElementById('btn-volver-admin').onclick = function() {
+	window.location.href = 'Administrador.html';
+};
+</script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proceso de Pago</title>
+    <link rel="stylesheet" href="ProcesodePago.css">
+    <!-- Fuente moderna Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="firebase/config.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="pago-panel">
+        <button id="btn-volver-inicio" class="volver-inicio-btn"><i class='bx bx-arrow-back'></i> Volver al inicio</button>
+        <h2>Proceso de Pago</h2>
+        <div class="resumen-carrito">
+            <h3>Resumen de tu compra</h3>
+            <table class="tabla-carrito">
+                <thead>
+                    <tr>
+                        <th>Imagen</th>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody id="carrito-lista"></tbody>
+            </table>
+            <div class="total-pago">
+                <span>Total a pagar:</span>
+                <span id="total-pago">S/ 0.00</span>
+            </div>
+        </div>
+        <form id="form-pago" class="form-pago">
+            <h3>Datos para el pago</h3>
+            <label>Nombre completo:</label>
+            <input type="text" id="nombre-pago" required>
+            <label>Correo electrónico:</label>
+            <input type="email" id="email-pago" required>
+            <label>Método de pago:</label>
+            <select id="metodo-pago" required>
+                <option value="Efectivo">Efectivo</option>
+                <option value="Yape">Yape</option>
+                <option value="Plin">Plin</option>
+                <option value="Tarjeta">Tarjeta</option>
+            </select>
+            <div id="info-qr" style="display:none; margin:10px 0; text-align:center;">
+                <img id="img-qr" src="" alt="QR" style="max-width:160px; display:block; margin:0 auto 8px auto; border-radius:12px; box-shadow:0 2px 8px #0001;">
+                <div style="font-weight:600; color:#900C3F;">Número: <span id="num-qr"></span></div>
+            </div>
+            <div id="info-tarjeta" style="display:none; margin:10px 0;">
+                <div class="tarjeta-form-group">
+                    <label for="tarjeta-numero">Número de tarjeta:</label>
+                    <div class="input-icon">
+                        <i class='bx bx-credit-card'></i>
+                        <input type="text" id="tarjeta-numero" maxlength="19" pattern="[0-9 ]{16,19}" placeholder="0000 0000 0000 0000">
+                    </div>
+                </div>
+                <div class="tarjeta-form-row">
+                    <div class="tarjeta-form-group">
+                        <label for="tarjeta-vencimiento">Vencimiento:</label>
+                        <div class="input-icon">
+                            <i class='bx bx-calendar'></i>
+                            <input type="text" id="tarjeta-vencimiento" placeholder="MM/AA" maxlength="5" pattern="(0[1-9]|1[0-2])\/\d{2}">
+                        </div>
+                    </div>
+                    <div class="tarjeta-form-group">
+                        <label for="tarjeta-cvv">CVV:</label>
+                        <div class="input-icon">
+                            <i class='bx bx-lock-alt'></i>
+                            <input type="text" id="tarjeta-cvv" maxlength="4" pattern="\d{3,4}" placeholder="123">
+                        </div>
+                    </div>
+                </div>
+                <div class="tarjeta-form-group">
+                    <label for="tarjeta-nombre">Nombre en la tarjeta:</label>
+                    <div class="input-icon">
+                        <i class='bx bx-user'></i>
+                        <input type="text" id="tarjeta-nombre" placeholder="Como aparece en la tarjeta">
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn-pagar">Pagar</button>
+        </form>
+        <div id="mensaje-pago" class="mensaje-pago"></div>
+    </div>
+    <script src="ProcesodePago.js"></script>
+    <script>
+    // Navegación de regreso al inicio
+    document.getElementById('btn-volver-inicio').onclick = function() {
+        window.location.href = 'index.html';
+    };
+    // Mostrar QR y número según método de pago, o inputs de tarjeta
+    const metodoPago = document.getElementById('metodo-pago');
+    const infoQR = document.getElementById('info-qr');
+    const imgQR = document.getElementById('img-qr');
+    const numQR = document.getElementById('num-qr');
+    const infoTarjeta = document.getElementById('info-tarjeta');
+    const datosQR = {
+        Yape: { qr: 'assets/qr_yape.png', num: '999 888 777' },
+        Plin: { qr: 'assets/qr_plin.png', num: '999 888 666' }
+    };
+    metodoPago.addEventListener('change', function() {
+        if (this.value === 'Yape' || this.value === 'Plin') {
+            infoQR.style.display = 'block';
+            imgQR.src = datosQR[this.value].qr;
+            imgQR.alt = 'QR ' + this.value;
+            numQR.textContent = datosQR[this.value].num;
+            infoTarjeta.style.display = 'none';
+        } else if (this.value === 'Tarjeta') {
+            infoQR.style.display = 'none';
+            imgQR.src = '';
+            numQR.textContent = '';
+            infoTarjeta.style.display = 'block';
+        } else {
+            infoQR.style.display = 'none';
+            imgQR.src = '';
+            numQR.textContent = '';
+            infoTarjeta.style.display = 'none';
+        }
+    });
+    </script>
+</body>
+</html>
+

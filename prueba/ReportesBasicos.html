@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportes Básicos</title>
+    <link rel="stylesheet" href="ReportesBasicos.css">
+        <!-- Fuente moderna Google Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="firebase/config.js"></script>
+    <!-- Chart.js para gráficas -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="reportes-panel">
+        <button id="btn-volver-admin" class="volver-admin-btn"><i class='bx bx-arrow-back'></i> Volver al Panel Principal</button>
+        <h2>Reportes Básicos</h2>
+        <div class="reportes-filtros">
+            <label for="filtro-periodo">Periodo:</label>
+            <select id="filtro-periodo">
+                <option value="dia">Día</option>
+                <option value="semana">Semana</option>
+                <option value="mes">Mes</option>
+            </select>
+        </div>
+        <div class="reportes-grafica">
+            <canvas id="grafica-ventas" height="120"></canvas>
+        </div>
+        <div class="reportes-mas-vendidos">
+            <h3>Productos más vendidos</h3>
+            <ul id="lista-mas-vendidos"></ul>
+        </div>
+    </div>
+    <script src="utils-excel.js"></script>
+    <script src="ReportesBasicos.js"></script>
+    <script>
+    // Navegación de regreso al panel admin
+    document.getElementById('btn-volver-admin').onclick = function() {
+        window.location.href = 'Administrador.html';
+    };
+    </script>
+</body>
+</html>

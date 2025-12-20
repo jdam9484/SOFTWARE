@@ -1,0 +1,132 @@
+/* --- Panel de reportes --- */
+.reportes-panel {
+	max-width: 700px;
+	margin: 32px auto;
+	background: #fff;
+	border-radius: 16px;
+	box-shadow: 0 2px 16px #0001;
+	padding: 32px 32px 24px 32px;
+}
+.reportes-panel h2 {
+	.reportes-panel {
+	   border-radius: 18px;
+	   box-shadow: 0 2px 18px #900c3f22;
+	   padding: 36px 36px 28px 36px;
+	   font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+	}
+
+	body, html {
+	    font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+	    background: #faf7f7;
+	}
+	color: #900C3F;
+	text-align: center;
+	margin-bottom: 18px;
+}
+.reportes-filtros {
+	.reportes-panel h2 {
+	   margin-bottom: 22px;
+	   font-size: 2.1em;
+	   font-weight: 700;
+	   letter-spacing: 1px;
+	}
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-bottom: 18px;
+}
+.reportes-filtros label {
+	font-weight: 500;
+	color: #900C3F;
+}
+.reportes-filtros select {
+	padding: 6px 12px;
+	border-radius: 6px;
+	border: 1px solid #ccc;
+	font-size: 1em;
+	background: #fff;
+	color: #900C3F;
+	outline: none;
+	transition: border 0.2s;
+}
+.reportes-filtros select:focus {
+	border: 1.5px solid #900C3F;
+}
+.reportes-grafica {
+	background: #f5f6fa;
+	border-radius: 12px;
+	padding: 18px 12px 12px 12px;
+	margin-bottom: 28px;
+}
+.reportes-mas-vendidos {
+	.reportes-grafica {
+	   border-radius: 16px;
+	   padding: 22px 16px 16px 16px;
+	   box-shadow: 0 1px 8px #900c3f11;
+	}
+	margin-top: 18px;
+}
+.reportes-mas-vendidos h3 {
+	color: #900C3F;
+	margin-bottom: 10px;
+}
+#lista-mas-vendidos {
+	.reportes-mas-vendidos h3 {
+	   margin-bottom: 12px;
+	   font-size: 1.2em;
+	   font-weight: 600;
+	   letter-spacing: 0.5px;
+	}
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+#lista-mas-vendidos li {
+	background: #900C3F11;
+	color: #900C3F;
+	border-radius: 8px;
+	padding: 10px 16px;
+	margin-bottom: 8px;
+	font-weight: 500;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+/* --- Botón volver al panel admin --- */
+	#lista-mas-vendidos li {
+	   background: #fff6fa;
+	   border-radius: 10px;
+	   padding: 13px 20px;
+	   margin-bottom: 10px;
+	   box-shadow: 0 1px 6px #900c3f11;
+	   font-size: 1.08em;
+	   transition: transform 0.12s, box-shadow 0.12s;
+	}
+	#lista-mas-vendidos li:hover {
+	   background: #fbe9f2;
+	   transform: scale(1.025);
+	   box-shadow: 0 2px 12px #900c3f22;
+	}
+.volver-admin-btn {
+	background: #900C3F;
+	color: #fff;
+	border: none;
+	border-radius: 6px;
+	padding: 10px 22px;
+	font-size: 1em;
+	font-weight: 500;
+	margin-bottom: 18px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	transition: background 0.2s;
+}
+.volver-admin-btn:hover {
+	background: #b48a6e;
+	color: #fff;
+}
+body, html {
+	 font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+	 background: #faf7f7;
+}
