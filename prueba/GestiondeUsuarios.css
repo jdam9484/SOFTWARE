@@ -75,6 +75,81 @@
 	background: #b48a6e;
 	color: #fff;
 }
+/* --- Modal editar usuario --- */
+.modal-usuario {
+	position: fixed;
+	top: 0; left: 0; right: 0; bottom: 0;
+	background: rgba(0,0,0,0.25);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1000;
+}
+.modal-usuario-content {
+	background: #fff;
+	padding: 32px 28px 22px 28px;
+	border-radius: 12px;
+	min-width: 320px;
+	box-shadow: 0 2px 16px #0002;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+.cerrar-modal-usuario {
+	position: absolute;
+	top: 12px;
+	right: 18px;
+	font-size: 1.5em;
+	color: #900C3F;
+	cursor: pointer;
+}
+.form-group {
+	margin-bottom: 14px;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+.form-group label {
+	font-weight: 500;
+	color: #900C3F;
+}
+.form-group input, .form-group select {
+	padding: 7px 10px;
+	border-radius: 6px;
+	border: 1px solid #ccc;
+	font-size: 1em;
+}
+.btn-guardar-cambios {
+	background: #900C3F;
+	color: #fff;
+	border: none;
+	border-radius: 6px;
+	padding: 10px 18px;
+	font-size: 1em;
+	font-weight: 500;
+	cursor: pointer;
+	margin-top: 8px;
+	transition: background 0.2s;
+}
+.btn-guardar-cambios:hover {
+	background: #b48a6e;
+}
+.btn-editar-usuario {
+	background: #fff;
+	color: #900C3F;
+	border: 1px solid #900C3F;
+	border-radius: 6px;
+	padding: 6px 14px;
+	font-size: 0.98em;
+	font-weight: 500;
+	cursor: pointer;
+	transition: background 0.2s, color 0.2s;
+}
+.btn-editar-usuario:hover {
+	background: #900C3F;
+	color: #fff;
+}
 body, html {
 	 font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
 	 background: #faf7f7;

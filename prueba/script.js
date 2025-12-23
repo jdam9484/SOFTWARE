@@ -1,3 +1,15 @@
+// ========== TOAST DE PRODUCTO AGREGADO ==========
+function mostrarToastCarrito(mensaje = "Producto agregado al carrito") {
+    const toast = document.getElementById('toast-carrito');
+    if (!toast) return;
+    toast.textContent = mensaje;
+    toast.style.display = 'block';
+    toast.style.opacity = '1';
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => { toast.style.display = 'none'; }, 400);
+    }, 1400);
+}
 // ========== FUNCIONES DE AUTENTICACIÓN (LOGIN Y REGISTRO) ========== //
 async function loginUser(email, password) {
     try {
@@ -89,14 +101,14 @@ let currentItem = 4;
 
 // =================== PRODUCTOS ===================
 const products = [
-    { id: 1, name: "Refresco", price: 100, image: "assets/imagen4.jpeg", porciones: "1", descripcion: "Bebida refrescante de sabor único." },
-    { id: 2, name: "Torta", price: 100, image: "assets/imagen2.jpeg", porciones: "1", descripcion: "Deliciosa torta casera, ideal para cualquier ocasión." },
-    { id: 3, name: "Torta de chocolate", price: 100, image: "assets/imagen5.jpeg", porciones: "2", descripcion: "Exquisita torta de chocolate con cobertura de cacao puro." },
-    { id: 4, name: "Torta de tres leches", price: 100, image: "assets/imagen3.jpeg", porciones: "2", descripcion: "Torta suave y húmeda con mezcla de tres tipos de leche." },
-    { id: 5, name: "Refresco", price: 100, image: "assets/imagen4.jpeg", porciones: "1", descripcion: "Bebida refrescante de sabor único." },
-    { id: 6, name: "Torta", price: 100, image: "assets/imagen2.jpeg", porciones: "1", descripcion: "Deliciosa torta casera, ideal para cualquier ocasión." },
-    { id: 7, name: "Torta de chocolate", price: 100, image: "assets/imagen5.jpeg", porciones: "2", descripcion: "Exquisita torta de chocolate con cobertura de cacao puro." },
-    { id: 8, name: "Torta de tres leches", price: 100, image: "assets/imagen3.jpeg", porciones: "2", descripcion: "Torta suave y húmeda con mezcla de tres tipos de leche." }
+    { id: 1, name: "Cheesecake de Maracuya", price: 70.00, image: "assets/Postre_MussMara.jpg", porciones: "1", descripcion: "Suave y cremoso cheesecake bañado con una vibrante reducción de maracuyá natural. El equilibrio perfecto entre lo dulce y lo cítrico." },
+    { id: 2, name: "Torta Selva Negra", price: 70.00, image: "assets/Torta_Selva_Negra.jpg", porciones: "1", descripcion: "Deliciosa torta de chocolate, ideal para cumpleaños y celebraciones especiales." },
+    { id: 3, name: "Torta 3 Leches", price: 70.00, image: "assets/Torta_3Leches.JPG", porciones: "2", descripcion: "Exquisita torta bañada en tres leches con un sabor sin igual para degustar con amigos y familia." },
+    { id: 4, name: "Empanada de Queso", price: 5.00, image: "assets/Salado_EmpanadaQueso.jpg", porciones: "1", descripcion: "Torta suave y húmeda con mezcla de tres tipos de leche." },
+    { id: 5, name: "Papa Rellena", price: 5.00, image: "assets/Salado_PapaRellena.jpg", porciones: "1", descripcion: "Un clásico irresistible. Bola de puré de papa suave y dorada, con un sabroso relleno de carne de res, huevo duro y aceitunas." },
+    { id: 6, name: "Gelatina", price: 3.00, image: "assets/Postre_Gelatina.jpg", porciones: "1", descripcion: "Postre clásico, ligero y refrescante. Una opción ideal de textura suave y temblorosa, disponible en nuestros sabores frutales favoritos." },
+    { id: 7, name: "Torta Helada", price: 70.00, image: "assets/Torta_Helada.jpg", porciones: "1", descripcion: "Disfruta de este postre nostálgico que combina texturas y sabor. Suave, cremosa y helada: la mejor manera de terminar cualquier comida." },
+    { id: 8, name: "Bebidas Gaseosas", price: 5.00, image: "assets/Bebidas_CocaInkaAgua.jpg", porciones: "1", descripcion: "Bebidas refrescantes ideales para esta calor tropical." }
 ];
 
 // =================== FUNCIONES MOSTRAR/OCULTAR FORMULARIOS ===================
@@ -165,6 +177,7 @@ function comprarElemento(e) {
         };
         
         insertarCarrito(infoProducto);
+        mostrarToastCarrito(`"${infoProducto.titulo}" agregado al carrito`);
     }
 }
 
@@ -182,6 +195,7 @@ function comprarDetalle(e) {
             precio: "S/ " + product.price.toFixed(2),
             id: product.id
         });
+        mostrarToastCarrito(`"${product.name}" agregado al carrito`);
     }
 }
 
