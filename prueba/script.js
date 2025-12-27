@@ -470,5 +470,19 @@ logoutBtn.addEventListener('click', () => {
     });
 });
 
+// Función para cerrar el modal de login/registro
+function cerrarForm() {
+    document.getElementById('login').style.display = 'none';
+    document.getElementById('registro').style.display = 'none';
+}
+
+// Inicialización global de Firebase Auth y Firestore
+window.addEventListener('DOMContentLoaded', function() {
+    if (typeof firebase !== 'undefined') {
+        window.auth = firebase.auth();
+        window.db = firebase.firestore();
+    }
+});
+
 
 

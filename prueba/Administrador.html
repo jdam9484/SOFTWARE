@@ -18,14 +18,14 @@
                 <i class='bx bxs-cake'></i>
                 <span class="logo_name">AdminPanel</span>
             </div>
-            <button id="btn-reportes-basicos" class="sidebar-btn" type="button">
-                <i class='bx bx-bar-chart'></i> Reportes Básicos
+            <button id="btn-reportes-basicos" class="sidebar-btn" type="button" tabindex="0">
+                <i class='bx bx-bar-chart'></i> <span class="btn-text">Reportes Básicos</span>
             </button>
-            <button id="btn-gestion-usuarios" class="sidebar-btn" type="button">
-                <i class='bx bx-user'></i> Gestión de Usuarios
+            <button id="btn-gestion-usuarios" class="sidebar-btn" type="button" tabindex="0">
+                <i class='bx bx-user'></i> <span class="btn-text">Gestión de Usuarios</span>
             </button>
-            <button id="btn-gestion-productos" class="sidebar-btn" type="button">
-                <i class='bx bx-package'></i> Gestión de Productos
+            <button id="btn-gestion-productos" class="sidebar-btn" type="button" tabindex="0">
+                <i class='bx bx-package'></i> <span class="btn-text">Gestión de Productos</span>
             </button>
             <button id="logout-admin" class="logout-btn">
                 <i class='bx bx-log-out'></i> Cerrar Sesión
@@ -113,26 +113,33 @@
 </body>
 </body>
 <script>
-// Navegación a módulos desde la barra lateral (asegurar que el DOM esté cargado)
-document.addEventListener('DOMContentLoaded', function() {
+// Unificar asignación de eventos para los botones de la barra lateral (siempre funciona en móvil y escritorio)
+function asignarEventosSidebar() {
     var btnGestion = document.getElementById('btn-gestion-productos');
     if (btnGestion) {
-        btnGestion.addEventListener('click', function() {
+        btnGestion.onclick = null;
+        btnGestion.addEventListener('click', function(e) {
+            e.preventDefault();
             window.location.href = 'GestiondeProductos.html';
         });
     }
     var btnUsuarios = document.getElementById('btn-gestion-usuarios');
     if (btnUsuarios) {
-        btnUsuarios.addEventListener('click', function() {
+        btnUsuarios.onclick = null;
+        btnUsuarios.addEventListener('click', function(e) {
+            e.preventDefault();
             window.location.href = 'GestiondeUsuarios.html';
         });
     }
     var btnReportes = document.getElementById('btn-reportes-basicos');
     if (btnReportes) {
-        btnReportes.addEventListener('click', function() {
+        btnReportes.onclick = null;
+        btnReportes.addEventListener('click', function(e) {
+            e.preventDefault();
             window.location.href = 'ReportesBasicos.html';
         });
     }
-});
+}
+document.addEventListener('DOMContentLoaded', asignarEventosSidebar);
 </script>
 </html>

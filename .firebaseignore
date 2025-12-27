@@ -1,0 +1,11 @@
+# Firebase Hosting Ignore File
+# No ignores for firebase/config.js
+# Puedes agregar aquí archivos o carpetas que NO quieras subir, pero asegúrate de que firebase/config.js NO esté listado aquí.
+
+# Ejemplo de ignores comunes:
+# node_modules
+# .git
+# .vscode
+# *.log
+# *.env
+# .DS_Store

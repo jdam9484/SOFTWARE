@@ -1,11 +1,3 @@
-/* --- Botón Reportes Básicos en sidebar --- */
-/* Usa .sidebar-btn ya existente para consistencia visual */
-/* --- Botón Gestión de Usuarios en sidebar --- */
-/* Usa .sidebar-btn ya existente para consistencia visual */
-/* --- Botón Gestión de Productos en sidebar --- */
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
-
 .sidebar-btn {
     background: none;
     border: none;
@@ -307,7 +299,6 @@
     .home-section { left: 0; width: 100%; }
     .sidebar { display: none; }
 }
-
 /* ---------------------------------------------------- */
 /*                IMPORTS Y RESET GENERAL               */
 /* ---------------------------------------------------- */
@@ -335,7 +326,8 @@ body {
     background: #FFF5E1;
     margin: 0;
     padding: 0;
-    padding-top: 100px;
+        overflow-y: scroll;
+        padding-top: 100px;
 }
 body:not(.admin-active) {
     padding-top: 100px;
