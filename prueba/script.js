@@ -41,6 +41,13 @@ async function registerUser(email, password, nombre) {
             clave: password,
             rol: "cliente"
         });
+        // Enviar notificación al administrador
+        await db.collection('notificaciones').add({
+            tipo: 'nuevo_registro',
+            mensaje: `Nuevo usuario registrado: ${nombre} (${email})`,
+            fecha: new Date().toISOString(),
+            leido: false
+        });
         return { success: true };
     } catch (error) {
         return { success: false, error: error.message };

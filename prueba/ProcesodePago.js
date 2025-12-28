@@ -70,18 +70,19 @@ formPago.onsubmit = async function(e) {
 	const nombre = document.getElementById('nombre-pago').value.trim();
 	const email = document.getElementById('email-pago').value.trim();
 	const metodo = document.getElementById('metodo-pago').value;
+	const fecha = new Date().toLocaleString();
+	let totalCompra = items.reduce((sum, it) => sum + (Number(it.precio) * Number(it.cantidad)), 0);
 	try {
 		await db.collection('ventas').add({
 			usuario: nombre,
 			email: email,
 			metodo: metodo,
 			items: items,
-			total: items.reduce((sum, it) => sum + (Number(it.precio) * Number(it.cantidad)), 0),
+			total: totalCompra,
 			fecha: new Date().toISOString()
 		});
 		// Actualizar stock de cada producto vendido
 		for (const item of items) {
-			// Detectar el nombre real del producto en el carrito
 			const nombreProducto = item.nombre || item.titulo || item.name || item.producto || null;
 			if (!nombreProducto) {
 				console.error('No se encontró el nombre del producto en el item:', item);
@@ -100,6 +101,12 @@ formPago.onsubmit = async function(e) {
 		}
 		mensajePago.textContent = '¡Pago realizado con éxito!';
 		mensajePago.style.color = '#27ae60';
+		// Generar boleta PDF automáticamente
+		generarBoletaPDF({nombre, email, metodo, fecha, items, total: totalCompra});
+		// Mostrar botón para descargar comprobante (asegurar que se muestre tras reset)
+		setTimeout(() => {
+			mostrarBotonDescargar({nombre, email, metodo, fecha, items, total: totalCompra});
+		}, 300);
 		localStorage.removeItem('carrito');
 		mostrarCarrito();
 		formPago.reset();
@@ -109,6 +116,64 @@ formPago.onsubmit = async function(e) {
 		mensajePago.style.color = '#d7005f';
 	}
 };
+
+// Función para generar boleta PDF usando jsPDF
+function generarBoletaPDF({nombre, email, metodo, fecha, items, total}) {
+	const { jsPDF } = window.jspdf;
+	const doc = new jsPDF();
+	doc.setFontSize(16);
+	doc.text('Boleta de Compra', 105, 18, { align: 'center' });
+	doc.setFontSize(11);
+	doc.text(`Cliente: ${nombre}`, 14, 32);
+	doc.text(`Email: ${email}`, 14, 40);
+	doc.text(`Método de pago: ${metodo}`, 14, 48);
+	doc.text(`Fecha: ${fecha}`, 14, 56);
+	doc.text('Detalle de la compra:', 14, 66);
+	// Encabezados de tabla
+	doc.setFont(undefined, 'bold');
+	doc.text('Producto', 14, 76);
+	doc.text('Cant.', 80, 76);
+	doc.text('Precio', 100, 76);
+	doc.text('Subtotal', 140, 76);
+	doc.setFont(undefined, 'normal');
+	let y = 84;
+	items.forEach(item => {
+		const nombreProd = item.titulo || item.name || item.producto || '-';
+		doc.text(String(nombreProd), 14, y);
+		doc.text(String(item.cantidad), 80, y);
+		doc.text('S/ ' + Number(item.precio).toFixed(2), 100, y);
+		doc.text('S/ ' + (Number(item.precio) * Number(item.cantidad)).toFixed(2), 140, y);
+		y += 8;
+		if (y > 270) {
+			doc.addPage();
+			y = 20;
+		}
+	});
+	doc.setFont(undefined, 'bold');
+	doc.text('Total:', 120, y + 8);
+	doc.text('S/ ' + Number(total).toFixed(2), 140, y + 8);
+	doc.save('boleta_compra.pdf');
+}
+
+// Mostrar botón para descargar comprobante nuevamente
+function mostrarBotonDescargar(datos) {
+	let btn = document.getElementById('btn-descargar-boleta');
+	if (!btn) {
+		btn = document.createElement('button');
+		btn.id = 'btn-descargar-boleta';
+		btn.textContent = 'Descargar comprobante';
+		btn.className = 'btn-pagar';
+		btn.style.margin = '12px auto 0 auto';
+		btn.style.display = 'block';
+		mensajePago.parentNode.insertBefore(btn, mensajePago.nextSibling);
+	}
+	btn.onclick = function() {
+		generarBoletaPDF(datos);
+	};
+	btn.style.display = 'block';
+	// Mejorar visibilidad y scroll si es necesario
+	btn.scrollIntoView({behavior: 'smooth', block: 'center'});
+}
 
 // Inicializar
 mostrarCarrito();

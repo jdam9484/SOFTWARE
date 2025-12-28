@@ -154,3 +154,4 @@ if (logoutBtn) {
 
 // Iniciar verificación al cargar
 checkAdmin();
+
