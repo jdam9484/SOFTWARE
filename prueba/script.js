@@ -106,7 +106,7 @@ let currentUser = null;
 let currentItem = 4;
 
 
-// =================== PRODUCTOS ===================
+// =================== PRODUCTOS EN EL BUSCADOR ===================
 const products = [
     { id: 1, name: "Cheesecake de Maracuya", price: 70.00, image: "assets/Postre_MussMara.jpg", porciones: "1", descripcion: "Suave y cremoso cheesecake bañado con una vibrante reducción de maracuyá natural. El equilibrio perfecto entre lo dulce y lo cítrico." },
     { id: 2, name: "Torta Selva Negra", price: 70.00, image: "assets/Torta_Selva_Negra.jpg", porciones: "1", descripcion: "Deliciosa torta de chocolate, ideal para cumpleaños y celebraciones especiales." },
@@ -115,7 +115,12 @@ const products = [
     { id: 5, name: "Papa Rellena", price: 5.00, image: "assets/Salado_PapaRellena.jpg", porciones: "1", descripcion: "Un clásico irresistible. Bola de puré de papa suave y dorada, con un sabroso relleno de carne de res, huevo duro y aceitunas." },
     { id: 6, name: "Gelatina", price: 3.00, image: "assets/Postre_Gelatina.jpg", porciones: "1", descripcion: "Postre clásico, ligero y refrescante. Una opción ideal de textura suave y temblorosa, disponible en nuestros sabores frutales favoritos." },
     { id: 7, name: "Torta Helada", price: 70.00, image: "assets/Torta_Helada.jpg", porciones: "1", descripcion: "Disfruta de este postre nostálgico que combina texturas y sabor. Suave, cremosa y helada: la mejor manera de terminar cualquier comida." },
-    { id: 8, name: "Bebidas Gaseosas", price: 5.00, image: "assets/Bebidas_CocaInkaAgua.jpg", porciones: "1", descripcion: "Bebidas refrescantes ideales para esta calor tropical." }
+    { id: 8, name: "Bebidas Gaseosas", price: 5.00, image: "assets/Bebidas_CocaInkaAgua.jpg", porciones: "1", descripcion: "Bebidas refrescantes ideales para esta calor tropical." },
+    { id: 9, name: "Copa de Helado", price: 5.00, image: "assets/Copa_de_Helado.jpeg", porciones: "1", descripcion: "Deliciosa copa de helado con una mezcla de sabores cremosos y refrescantes, perfecta para disfrutar en cualquier momento del día.." },
+    { id: 10, name: "Budín", price: 5.00, image: "assets/budin.jpeg", porciones: "1", descripcion: "Delicioso budín casero, suave y dulce, perfecto para acompañar tu café o té en cualquier momento del día." },
+    { id: 11, name: "Empanada de Carne", price: 5.00, image: "assets/Empanada_de_Carne.jpeg", porciones: "1", descripcion: "Empanada rellena de carne sazonada, jugosa y sabrosa, envuelta en una masa dorada y crujiente. Ideal para cualquier momento del día." },
+    { id: 12, name: "Muss de Algarrobina", price: 5.00, image: "assets/Muss_de_Algarrobina.jpeg", porciones: "1", descripcion: "Delicioso postre cremoso elaborado con auténtica algarrobina, de sabor suave y dulce natural. Su textura ligera y su alto valor nutritivo lo convierten en una opción ideal para disfrutar en cualquier momento del día, combinando tradición y placer en cada cucharada." }
+    
 ];
 
 // =================== FUNCIONES MOSTRAR/OCULTAR FORMULARIOS ===================
