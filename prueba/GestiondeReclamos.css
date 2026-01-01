@@ -1,0 +1,143 @@
+
+body {
+	background: #faf7fa;
+	font-family: 'Segoe UI', Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	min-height: 100vh;
+}
+
+.gestion-container {
+	max-width: 1200px;
+	margin: 40px auto 24px auto;
+	background: #fff;
+	border-radius: 16px;
+	box-shadow: 0 8px 32px #900C3F22, 0 1.5px 8px #900C3F11;
+	padding: 36px 32px 28px 32px;
+	position: relative;
+	overflow-x: auto;
+	animation: fadeIn 1.1s cubic-bezier(.4,0,.2,1);
+}
+
+.gestion-container h1 {
+	text-align: center;
+	color: #900C3F;
+	margin-bottom: 28px;
+	font-size: 2.1em;
+	font-weight: 800;
+	letter-spacing: 1px;
+}
+
+.filtros {
+	display: flex;
+	gap: 18px;
+	margin-bottom: 24px;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.filtros input,
+.filtros select {
+	padding: 10px 14px;
+	border: 1.5px solid #900C3F44;
+	border-radius: 7px;
+	font-size: 1em;
+	background: #fff;
+	transition: border 0.2s;
+	outline: none;
+	min-width: 180px;
+}
+
+.filtros input:focus,
+.filtros select:focus {
+	border: 2px solid #900C3F;
+	background: #f8f3f8;
+}
+
+.tabla-wrapper {
+	overflow-x: auto;
+	margin-top: 10px;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	background: #fff;
+	font-size: 1em;
+	box-shadow: 0 1.5px 8px #900C3F11;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+th, td {
+	padding: 12px 10px;
+	text-align: left;
+	border-bottom: 1px solid #f3e6ee;
+	vertical-align: top;
+}
+
+th {
+	background: #f8e9f0;
+	color: #900C3F;
+	font-weight: 700;
+	font-size: 1.04em;
+	letter-spacing: 0.5px;
+}
+
+tr:last-child td {
+	border-bottom: none;
+}
+
+td {
+	color: #333;
+	font-size: 0.98em;
+	word-break: break-word;
+}
+
+.estado-pendiente {
+	background: #f8e9f0;
+	color: #900C3F;
+	font-weight: bold;
+	border-radius: 6px;
+	padding: 4px 10px;
+	display: inline-block;
+}
+.estado-resuelto {
+	background: #e0ffe6;
+	color: #1bbd36;
+	font-weight: bold;
+	border-radius: 6px;
+	padding: 4px 10px;
+	display: inline-block;
+}
+
+.btn-accion {
+	background: #900C3F;
+	color: #fff;
+	border: none;
+	border-radius: 7px;
+	padding: 7px 16px;
+	font-size: 1em;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background 0.18s, transform 0.18s;
+	margin: 2px 0;
+}
+.btn-accion:hover {
+	background: #d7005f;
+	transform: scale(1.04);
+}
+
+@media (max-width: 900px) {
+	.gestion-container {
+		padding: 16px 2vw 10px 2vw;
+	}
+	th, td {
+		padding: 8px 4px;
+		font-size: 0.95em;
+	}
+	.filtros input, .filtros select {
+		min-width: 120px;
+		font-size: 0.95em;
+	}
+}

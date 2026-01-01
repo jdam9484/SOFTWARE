@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Gestión de Contactos</title>
+	<link rel="stylesheet" href="GestiondeContactos.css">
+	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+	<script src="firebase/config.js"></script>
+</head>
+<body>
+	<div class="contactos-panel">
+		<button id="btn-volver-admin" class="volver-admin-btn">Volver al Panel Principal</button>
+		<h2>Gestión de Contactos</h2>
+		<table class="contactos-table">
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Email</th>
+					<th>Mensaje</th>
+					<th>Fecha</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody id="contactos-lista">
+				<tr><td colspan="5" style="text-align:center; color:#aaa;">Cargando mensajes...</td></tr>
+			</tbody>
+		</table>
+		<div id="detalle-contacto" class="detalle-contacto" style="display:none;"></div>
+	</div>
+	<script src="GestiondeContactos.js"></script>
+	<script>
+	document.getElementById('btn-volver-admin').onclick = function() {
+		window.location.href = 'Administrador.html';
+	};
+	</script>
+</body>
+</html>

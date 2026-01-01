@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contáctanos</title>
+    <link rel="stylesheet" href="Contáctanos.css">
+</head>
+<body>
+    <div class="contacto-panel">
+        <h1>Contáctanos</h1>
+        <p>¿Tienes alguna consulta, sugerencia o quieres hacer un pedido especial? En <b>Pastelería</b> estamos para atenderte. Puedes comunicarte con nosotros a través del siguiente formulario, por correo o visitándonos en nuestro local.</p>
+
+        <h2>Datos de contacto</h2>
+        <ul>
+            <li><b>Correo:</b> pasteleria@email.com</li>
+            <li><b>Teléfono:</b> 982 514 925</li>
+            <li><b>Dirección:</b> Av. Principal 123, Ciudad, País</li>
+            <li><b>Horario de atención:</b> Lunes a Sábado, 8:00 am - 8:00 pm</li>
+        </ul>
+
+        <h2>Ubicación</h2>
+        <div class="mapa-container">
+            <iframe src="https://www.google.com/maps?q=-13.52264,-71.96734&z=17&output=embed" width="100%" height="280" style="border:0; border-radius:12px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+        <h2>Formulario de contacto</h2>
+        <form class="form-contacto">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+            <label for="email">Correo electrónico:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="mensaje">Mensaje:</label>
+            <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+            <button type="submit">Enviar mensaje</button>
+        </form>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="firebase/config.js"></script>
+    <script src="Contáctanos.js"></script>
+</body>
+</html>

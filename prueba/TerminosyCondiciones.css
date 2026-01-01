@@ -1,0 +1,54 @@
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    background: #faf7f7;
+    margin: 0;
+    padding: 0;
+}
+
+.terminos-panel {
+    max-width: 700px;
+    margin: 40px auto 32px auto;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 16px #900C3F11;
+    padding: 38px 32px 28px 32px;
+}
+.terminos-panel h1 {
+    color: #900C3F;
+    text-align: center;
+    margin-bottom: 28px;
+    font-size: 2.1em;
+    font-weight: 800;
+}
+.terminos-panel h2 {
+    color: #900C3F;
+    margin-top: 28px;
+    margin-bottom: 10px;
+    font-size: 1.18em;
+    font-weight: 700;
+}
+.terminos-panel p, .terminos-panel ul {
+    color: #333;
+    font-size: 1.05em;
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+.terminos-panel ul {
+    padding-left: 22px;
+    margin-bottom: 18px;
+}
+.terminos-panel li {
+    margin-bottom: 6px;
+}
+.terminos-panel a {
+    color: #900C3F;
+    text-decoration: underline;
+}
+@media (max-width: 700px) {
+    .terminos-panel {
+        padding: 16px 4vw 12px 4vw;
+    }
+    .terminos-panel h1 {
+        font-size: 1.3em;
+    }
+}

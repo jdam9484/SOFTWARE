@@ -1,3 +1,59 @@
+// =================== MOSTRAR PRODUCTOS FIRESTORE + ESTÁTICOS ===================
+async function mostrarProductosCombinados() {
+    const boxContainer = document.getElementById('lista-1');
+    if (!boxContainer) return;
+    // Limpiar contenedor
+    boxContainer.innerHTML = '';
+    // Renderizar productos estáticos
+    products.forEach(p => {
+        boxContainer.innerHTML += `
+        <div class="box" id="producto-${p.id}">
+            <img src="${p.image}" alt="">
+            <div>
+                <h3>${p.name}</h3>
+                <p>Alta Calidad</p>
+                <p class="precio">s/ ${p.price.toFixed(2)}</p>
+                <p class="porciones">Porciones: ${p.porciones}</p>
+                <p class="descripcion">${p.descripcion}</p>
+                <div class="cantidad-control">
+                    <button type="button" class="restar-cantidad" data-id="${p.id}">-</button>
+                    <input type="number" min="1" max="10" value="1" class="cantidad" data-id="${p.id}" readonly>
+                    <button type="button" class="sumar-cantidad" data-id="${p.id}">+</button>
+                </div>
+                <a href="#" class="agregar-carrito btn-3" data-id="${p.id}">Agregar al carrito</a>
+            </div>
+        </div>
+        `;
+    });
+    // Renderizar productos de Firestore
+    const snap = await firebase.firestore().collection('productos').orderBy('nombre').get();
+    snap.forEach(doc => {
+        const p = doc.data();
+        boxContainer.innerHTML += `
+        <div class="box" id="producto-fb-${doc.id}">
+            <img src="${p.imagen || 'assets/default.png'}" alt="">
+            <div>
+                <h3>${p.nombre}</h3>
+                <p>Alta Calidad</p>
+                <p class="precio">s/ ${Number(p.precio).toFixed(2)}</p>
+                <p class="porciones">Porciones: ${p.porciones || 1}</p>
+                <p class="descripcion">${p.descripcion || ''}</p>
+                <div class="cantidad-control">
+                    <button type="button" class="restar-cantidad" data-id="${doc.id}">-</button>
+                    <input type="number" min="1" max="10" value="1" class="cantidad" data-id="${doc.id}" readonly>
+                    <button type="button" class="sumar-cantidad" data-id="${doc.id}">+</button>
+                </div>
+                <a href="#" class="agregar-carrito btn-3" data-id="${doc.id}">Agregar al carrito</a>
+            </div>
+        </div>
+        `;
+    });
+}
+
+// Ejecutar al cargar la página principal
+if (window.location.pathname.endsWith('index.html')) {
+    document.addEventListener('DOMContentLoaded', mostrarProductosCombinados);
+}
 // ========== TOAST DE PRODUCTO AGREGADO ==========
 function mostrarToastCarrito(mensaje = "Producto agregado al carrito") {
     const toast = document.getElementById('toast-carrito');

@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Gestión de Reclamos</title>
+	<link rel="stylesheet" href="GestiondeReclamos.css">
+</head>
+<body>
+	<div class="gestion-container">
+		<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;gap:10px;">
+			<button id="btn-volver-dashboard" style="background:#900C3F;color:#fff;padding:8px 18px;border:none;border-radius:7px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;"><span style="font-size:1.2em;">&#8592;</span> Volver al Dashboard</button>
+			<button id="btn-eliminar-historial" style="background:#d7005f;color:#fff;padding:8px 18px;border:none;border-radius:7px;font-weight:600;cursor:pointer;">Eliminar Historial</button>
+		</div>
+		<h1>Gestión de Reclamos</h1>
+		<div class="filtros">
+			<input type="text" id="busqueda" placeholder="Buscar por nombre, producto o estado...">
+			<select id="filtro-tipo">
+				<option value="">Todos los tipos</option>
+				<option value="queja">Queja</option>
+				<option value="reclamo">Reclamo</option>
+			</select>
+			<select id="filtro-estado">
+				<option value="">Todos los estados</option>
+				<option value="pendiente">Pendiente</option>
+				<option value="resuelto">Resuelto</option>
+			</select>
+		</div>
+		<div class="tabla-wrapper">
+			<table id="tabla-reclamos">
+				<thead>
+					<tr>
+						<th>Fecha</th>
+						<th>Nombre</th>
+						<th>DNI</th>
+						<th>Email</th>
+						<th>Teléfono</th>
+						<th>Tipo</th>
+						<th>Producto</th>
+						<th>Detalle</th>
+						<th>Pedido</th>
+						<th>Estado</th>
+						<th>Acción</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- Reclamos se llenan dinámicamente -->
+				</tbody>
+			</table>
+		</div>
+		<div id="mensaje-vacio" style="display:none;text-align:center;color:#900C3F;margin-top:24px;font-size:1.1em;">No hay reclamos para mostrar.</div>
+	</div>
+	<script src="GestiondeReclamos.js"></script>
+</body>
+</html>

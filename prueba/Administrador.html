@@ -27,6 +27,12 @@
             <button id="btn-gestion-productos" class="sidebar-btn" type="button" tabindex="0">
                 <i class='bx bx-package'></i> <span class="btn-text">Gestión de Productos</span>
             </button>
+            <button id="btn-gestion-reclamos" class="sidebar-btn" type="button" tabindex="0" onclick="window.location.href='GestiondeReclamos.html'">
+                <i class='bx bx-message-error'></i> <span class="btn-text">Gestión de Reclamos</span>
+            </button>
+            <button id="btn-gestion-contactos" class="sidebar-btn" type="button" tabindex="0">
+                <i class='bx bx-envelope'></i> <span class="btn-text">Gestión de Contactos</span>
+            </button>
             <button id="logout-admin" class="logout-btn">
                 <i class='bx bx-log-out'></i> Cerrar Sesión
             </button>
@@ -137,6 +143,14 @@ function asignarEventosSidebar() {
         btnReportes.addEventListener('click', function(e) {
             e.preventDefault();
             window.location.href = 'ReportesBasicos.html';
+        });
+    }
+    var btnContactos = document.getElementById('btn-gestion-contactos');
+    if (btnContactos) {
+        btnContactos.onclick = null;
+        btnContactos.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = 'GestiondeContactos.html';
         });
     }
 }

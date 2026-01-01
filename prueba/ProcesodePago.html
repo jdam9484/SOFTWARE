@@ -47,7 +47,6 @@
             <select id="metodo-pago" required>
                 <option value="Efectivo">Efectivo</option>
                 <option value="Yape">Yape</option>
-                <option value="Plin">Plin</option>
                 <option value="Tarjeta">Tarjeta</option>
             </select>
             <div id="info-qr" style="display:none; margin:10px 0; text-align:center;">
@@ -105,15 +104,14 @@
     const numQR = document.getElementById('num-qr');
     const infoTarjeta = document.getElementById('info-tarjeta');
     const datosQR = {
-        Yape: { qr: 'assets/qr_yape.png', num: '999 888 777' },
-        Plin: { qr: 'assets/qr_plin.png', num: '999 888 666' }
+        Yape: { qr: 'assets/CodigoQR.jpeg', num: '982 514 925' }
     };
     metodoPago.addEventListener('change', function() {
-        if (this.value === 'Yape' || this.value === 'Plin') {
+        if (this.value === 'Yape') {
             infoQR.style.display = 'block';
-            imgQR.src = datosQR[this.value].qr;
-            imgQR.alt = 'QR ' + this.value;
-            numQR.textContent = datosQR[this.value].num;
+            imgQR.src = datosQR.Yape.qr;
+            imgQR.alt = 'QR Yape';
+            numQR.textContent = datosQR.Yape.num;
             infoTarjeta.style.display = 'none';
         } else if (this.value === 'Tarjeta') {
             infoQR.style.display = 'none';

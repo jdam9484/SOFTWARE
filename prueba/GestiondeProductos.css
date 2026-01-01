@@ -151,6 +151,27 @@ body {
 	border-radius: 6px;
 	font-size: 1em;
 }
+
+.modal-content textarea {
+	width: 100%;
+	padding: 10px 12px;
+	margin-bottom: 16px;
+	border: 1.5px solid #900C3F;
+	border-radius: 8px;
+	font-size: 1em;
+	font-family: 'Poppins', sans-serif;
+	background: #fbeee6;
+	color: #900C3F;
+	resize: vertical;
+	transition: border 0.2s, box-shadow 0.2s;
+	box-shadow: 0 2px 8px #900c3f11;
+}
+.modal-content textarea:focus {
+	outline: none;
+	border: 2px solid #EF8700;
+	background: #fff8f2;
+	box-shadow: 0 0 0 2px #EF870055;
+}
 .modal-actions {
 	display: flex;
 	gap: 12px;

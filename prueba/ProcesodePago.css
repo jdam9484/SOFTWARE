@@ -50,14 +50,30 @@
 	padding: 32px 32px 24px 32px;
 }
 
-body, html {
-	 font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
-	 background: #faf7f7;
-}
+	body, html {
+		font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+		background: #faf7f7;
+		min-height: 100vh;
+		margin: 0;
+		padding: 0;
+	}
 .pago-panel h2 {
 	color: #900C3F;
 	text-align: center;
 	margin-bottom: 18px;
+	font-size: 2em;
+	font-weight: 700;
+	letter-spacing: 0.5px;
+}
+.form-pago {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	margin-bottom: 18px;
+}
+#info-qr {
+	margin: 10px 0;
+	text-align: center;
 }
 .resumen-carrito h3 {
 	color: #900C3F;
@@ -71,6 +87,28 @@ body, html {
 	box-shadow: 0 2px 8px #0001;
 	margin-bottom: 18px;
 	overflow: hidden;
+#info-qr img {
+	max-width:120px;
+	width:120px;
+	height:120px;
+	display:block;
+	margin:0 auto 8px auto;
+	border-radius:16px;
+	border: 2.5px solid #900C3F;
+	background: #fff;
+	box-shadow: none;
+	object-fit: cover;
+}
+@media (max-width: 700px) {
+	.pago-panel {
+		padding: 12px 2vw;
+		min-width: unset;
+		max-width: 98vw;
+	}
+	.form-pago {
+		max-width: 100vw;
+	}
+}
 }
 .tabla-carrito th, .tabla-carrito td {
 	padding: 10px 8px;

@@ -17,6 +17,8 @@ const inputNombre = document.getElementById('producto-nombre');
 const inputCategoria = document.getElementById('producto-categoria');
 const inputPrecio = document.getElementById('producto-precio');
 const inputStock = document.getElementById('producto-stock');
+const inputDescripcion = document.getElementById('producto-descripcion');
+const inputImagen = document.getElementById('producto-imagen');
 
 // Mostrar productos
 async function cargarProductos() {
@@ -68,11 +70,12 @@ cerrarModal.onclick = cancelarProducto.onclick = () => {
 formProducto.onsubmit = async (e) => {
 	e.preventDefault();
 	const id = inputId.value;
-	const data = {
+	let data = {
 		nombre: inputNombre.value.trim(),
 		categoria: inputCategoria.value,
 		precio: parseFloat(inputPrecio.value),
-		stock: parseInt(inputStock.value)
+		stock: parseInt(inputStock.value),
+		descripcion: inputDescripcion.value.trim(),
 	};
 	if (id) {
 		// Editar
@@ -96,6 +99,8 @@ async function abrirModalEditar(id) {
 	inputCategoria.value = p.categoria;
 	inputPrecio.value = p.precio;
 	inputStock.value = p.stock;
+	inputDescripcion.value = p.descripcion || '';
+	// No se puede precargar imagen por seguridad, pero podrías mostrar una miniatura si lo deseas
 	modalProducto.style.display = 'flex';
 }
 

@@ -1,0 +1,50 @@
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    background: #faf7f7;
+    margin: 0;
+    padding: 0;
+}
+
+.privacidad-panel {
+    max-width: 700px;
+    margin: 40px auto 32px auto;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 16px #900C3F11;
+    padding: 38px 32px 28px 32px;
+}
+.privacidad-panel h1 {
+    color: #900C3F;
+    text-align: center;
+    margin-bottom: 28px;
+    font-size: 2.1em;
+    font-weight: 800;
+}
+.privacidad-panel h2 {
+    color: #900C3F;
+    margin-top: 28px;
+    margin-bottom: 10px;
+    font-size: 1.18em;
+    font-weight: 700;
+}
+.privacidad-panel p, .privacidad-panel ul {
+    color: #333;
+    font-size: 1.05em;
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+.privacidad-panel ul {
+    padding-left: 22px;
+    margin-bottom: 18px;
+}
+.privacidad-panel li {
+    margin-bottom: 6px;
+}
+@media (max-width: 700px) {
+    .privacidad-panel {
+        padding: 16px 4vw 12px 4vw;
+    }
+    .privacidad-panel h1 {
+        font-size: 1.3em;
+    }
+}
